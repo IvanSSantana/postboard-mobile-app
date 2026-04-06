@@ -7,6 +7,7 @@ import { Text } from 'react-native';
 import FeedScreen       from '../screens/FeedScreen';
 import DetalhesScreen   from '../screens/DetalhesScreen';
 import FormularioScreen from '../screens/FormularioScreen';
+import SobreScreen from '../screens/SobreScreen';
  
 // Cria as instâncias dos navegadores
 const Stack = createNativeStackNavigator();
@@ -32,6 +33,11 @@ function FeedStack() {
         name="Detalhes"
         component={DetalhesScreen}
         options={{ title: 'Detalhes do Post' }}
+      />
+      <Stack.Screen
+        name="Sobre"
+        component={SobreScreen}
+        options={{ title: 'Informações sobre o site' }}
       />
     </Stack.Navigator>
   );

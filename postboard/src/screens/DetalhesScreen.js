@@ -27,7 +27,7 @@ export default function DetalhesScreen({ navigation, route }) {
         setUsuario(dados);
       } catch (e) {
         // Falha ao buscar autor não é crítica — não bloqueia a tela
-        console.warn('Não foi possível carregar o autor:', e.message);
+        <Text style={styles.erro}>Não foi possível carregar o autor.</Text>
       } finally {
         setLoading(false);
       }
@@ -182,5 +182,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   botaoDesabilitado: { opacity: 0.6 },
-  textoBotao: { color: '#ffffff', fontSize: 15, fontWeight: '700' },
+  textoBotao: { color: '#ffffff', fontSize: 15, fontWeight: '700'
+  },
+  erro: {
+    color: '#fff491',
+    fontSize: 14,
+  }
 });

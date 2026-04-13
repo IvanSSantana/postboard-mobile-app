@@ -3,9 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
  
 // Recebe: post (objeto) e onPress (função chamada ao tocar no card)
 export default function PostCard({ post, onPress }) {
-  // Trunca o corpo para exibir apenas as primeiras 80 letras
-  const resumo = post.body.length > 80
-    ? post.body.substring(0, 80) + '...'
+  // Trunca o corpo para exibir apenas as primeiras 120 letras
+  const resumo = post.body.length > 120
+    ? post.body.substring(0, 120) + '...'
     : post.body;
  
   return (
@@ -16,8 +16,8 @@ export default function PostCard({ post, onPress }) {
     >
       {/* Linha superior: badge do ID + título */}
       <View style={styles.cabecalho}>
-        <View style={styles.badge}>
-          <Text style={styles.badgeTexto}>#{post.id}</Text>
+        <View style={styles.badge} >
+          <Text style={post.id % 2 == 0 ? styles.badgeTextoPar : styles.badgeTextoImpar}>#{post.id}</Text>
         </View>
         <Text style={styles.titulo} numberOfLines={2}>
           {post.title}
@@ -31,6 +31,7 @@ export default function PostCard({ post, onPress }) {
       <View style={styles.rodape}>
         <Text style={styles.autor}>👤 Usuário #{post.userId}</Text>
         <Text style={styles.lerMais}>Ver mais →</Text>
+        <Text>Data de publicação: {new Date().toLocaleDateString()}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -62,8 +63,13 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     marginTop: 2,
   },
-  badgeTexto: {
+  badgeTextoPar: {
     color: '#1a56db',
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  badgeTextoImpar: {
+    color: '#d15913',
     fontSize: 12,
     fontWeight: '700',
   },

@@ -8,7 +8,7 @@ import PostCard       from '../components/PostCard';
 import LoadingIndicator from '../components/LoadingIndicator';
 import EmptyState     from '../components/EmptyState';
  
-export default function FeedScreen({ navigation }) {
+export default function FeedScreen({ navigation}) {
   const [posts, setPosts]       = useState([]);
   const [loading, setLoading]   = useState(true);
   const [erro, setErro]         = useState(null);
@@ -24,7 +24,7 @@ export default function FeedScreen({ navigation }) {
         >
           <Text style={{ color: '#fff', fontSize: 28, fontWeight: '300' }}>+</Text>
         </TouchableOpacity>
-      ),
+      )
     });
   }, [navigation]);
  
@@ -38,8 +38,11 @@ export default function FeedScreen({ navigation }) {
     try {
       setLoading(true);
       setErro(null);
-      const dados = await getPosts();
+      const dados = await getPosts(1);
       setPosts(dados);
+      navigation.setOptions({
+        title: `Feed (${dados.length})`
+      });
     } catch (e) {
       setErro('Não foi possível carregar os posts.\nVerifique sua conexão.');
     } finally {
@@ -115,7 +118,7 @@ export default function FeedScreen({ navigation }) {
   );
 }
  
-const styles = StyleSheet.create({
+ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f3f4f6',

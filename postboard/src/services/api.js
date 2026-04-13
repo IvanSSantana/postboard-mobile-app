@@ -25,13 +25,18 @@ async function requisicao(endpoint, opcoes = {}) {
 // ─── Posts ──────────────────────────────────────────────────
  
 // Busca todos os posts (limitamos a 20 para não sobrecarregar a tela)
-export async function getPosts() {
-  return requisicao('/posts?_limit=20');
+export async function getPosts(page = 1) {
+  return requisicao(`/posts?_page=${page}&_limit=20`);
 }
  
 // Busca um post pelo ID
 export async function getPostPorId(id) {
   return requisicao(`/posts/${id}`);
+}
+ 
+// Busca os posts de um usuário específico
+export async function getPostsPorUsuario(userId) {
+  return requisicao(`/posts?userId=${userId}`);
 }
  
 // Cria um novo post
